@@ -14,16 +14,31 @@ function adicionarAmigo() {
         console.log(nomeAmigos);
         document.querySelector('input').value = '';
 
-        let li = `<li id="itemListaAmigos">${nomeAmigos[nomeAmigos.length-1]}<input id="botaoNome${nomeAmigos.length-1}" type="button" value="X" onclick=apagarNome()></li>`;
+        let li = `<li id="${nomeAmigos[nomeAmigos.length-1]}">${nomeAmigos[nomeAmigos.length-1]} <input class="button-remove" type="button" value=" X " onclick=apagarNome(this)></li>`;
+        // apagarNome(this), 'this' passa o próprio botão como referência.
+
         document.getElementById('listaAmigos').insertAdjacentHTML('beforeend', li);
     }
 }
 
 function sortearAmigo() {
-    let sorteado = nomeAmigos[Math.floor(Math.random() * nomeAmigos.length)];
-    document.getElementById('resultado').innerHTML = 'O nome sorteado é: ' + sorteado;
+    if (nomeAmigos.length > 0) {
+        let sorteado = nomeAmigos[Math.floor(Math.random() * nomeAmigos.length)];
+        document.getElementById('resultado').innerHTML = 'O nome sorteado é: ' + sorteado;
+    } else {
+        alert("Insira um nome.")
+    }
 }
 
-function apagarNome() {
-    
+function apagarNome(botao) {
+    nome = botao.parentElement.id;
+
+    indice = nomeAmigos.indexOf(nome);
+
+    if (indice != -1) {
+        nomeAmigos.splice(indice, 1);
+    }
+
+    console.log(nomeAmigos);
+    botao.parentElement.remove();
 }
