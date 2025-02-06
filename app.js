@@ -26,7 +26,7 @@ function sortearAmigo() {
         let sorteado = nomeAmigos[Math.floor(Math.random() * nomeAmigos.length)];
         document.getElementById('resultado').innerHTML = 'O nome sorteado é: ' + sorteado;
     } else {
-        alert("Insira um nome.")
+        alert("Por favor, insira um nome.")
     }
 }
 
